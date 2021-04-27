@@ -26,7 +26,7 @@ void int_to_ascii(int n, string str) {
 
     //return str;
 }
-string int_to_string(int n)
+string int_to_string(int n)	//itao
 {
 	string ch; //= malloc(50);
 	int_to_ascii(n,ch);

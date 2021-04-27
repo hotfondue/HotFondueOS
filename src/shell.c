@@ -1,6 +1,5 @@
 #include "../include/shell.h"
 
-//ORAORA
 
 int bg_color=0;
 

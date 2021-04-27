@@ -296,7 +296,7 @@ string readStr()
                 i++;
                 break; */          
         case 57:
-                printch(' ');
+                printch(' ');		//space
                 buffstr[i] = ' ';
                 i++;
                 break;

@@ -164,7 +164,7 @@ void create_dosbox_ui()
   draw_box(BOX_DOUBLELINE, 0, 0, BOX_MAX_WIDTH - 10, 12, WHITE, BLUE);
 
   moveCursor(2, 1);
-  print_colored("Welcome to HotFondue-x32 v1.0.0", LIGHT_GREEN, BLUE);
+  print_colored("Welcome to HotFondue-x86 v1.0.0", LIGHT_GREEN, BLUE);
  
   moveCursor(2, 4);
   print_colored("For supported shell commands: ", WHITE, BLUE);
