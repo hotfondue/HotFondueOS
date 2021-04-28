@@ -2,12 +2,12 @@
 #define DT_H
 
 #include "types.h"
+#include "string.h"
 
 //Defines the interface for initialising the GDT and IDT. Also defines needed structures.
 
 // Initialisation function is publicly accessible.
 void init_descriptor_tables();
-
 
 // This structure contains the value of one GDT entry.
 // We use the attribute 'packed' to tell GCC not to change
@@ -38,11 +38,11 @@ typedef struct gdt_ptr_struct gdt_ptr_t;
 // A struct describing an interrupt gate.
 struct idt_entry_struct
 {
-    u16int base_lo;             // The lower 16 bits of the address to jump to when this interrupt fires.
-    u16int sel;                 // Kernel segment selector.
-    u8int  always0;             // This must always be zero.
-    u8int  flags;               // More flags. See documentation.
-    u16int base_hi;             // The upper 16 bits of the address to jump to.
+    uint16 base_lo;             // The lower 16 bits of the address to jump to when this interrupt fires.
+    uint16 sel;                 // Kernel segment selector.
+    uint8  always0;             // This must always be zero.
+    uint8 flags;               // More flags. See documentation.
+    uint16 base_hi;             // The upper 16 bits of the address to jump to.
 } __attribute__((packed));
 
 typedef struct idt_entry_struct idt_entry_t;
@@ -90,4 +90,23 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
+extern void isr32();
+extern void isr33();
+extern void isr34();
+extern void isr35();
+extern void isr36();
+extern void isr37();
+extern void isr38();
+extern void isr39();
+extern void isr40();
+extern void isr41();
+extern void isr42();
+extern void isr43();
+extern void isr44();
+extern void isr45();
+extern void isr46();
+extern void isr47();
+extern void isr48();
+
+#endif
 

@@ -2,12 +2,13 @@ COMPILER = gcc
 LINKER = ld
 ASSEMBLER = nasm
 CFLAGS = -m32 -c -ffreestanding
+CFLAGS2=-nostdlib -fno-builtin -m32 -c
 ASFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T src/link.ld
 EMULATOR = qemu-system-x86_64
 EMULATOR_FLAGS = -kernel
 
-OBJS = obj/kasm.o obj/kc.o obj/kb.o obj/idt.o obj/isr.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/box.o obj/shell.o 
+OBJS = obj/kasm.o obj/gdt.o obj/interrupt.o obj/kc.o obj/kb.o obj/dt.o obj/isr.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/box.o obj/shell.o 
 OUTPUT = hotfondue/boot/kernel.bin
 
 run: all
@@ -18,11 +19,8 @@ all:$(OBJS)
 	mkdir hotfondue/boot/ -p
 	$(LINKER) $(LDFLAGS) -o $(OUTPUT) $(OBJS)
 	
-obj/isr.o:src/isr.c
-	$(COMPILER) $(CFLAGS) src/isr.c -o obj/isr.o
-	
-obj/idt.o:src/idt.c
-	$(COMPILER) $(CFLAGS) src/idt.c -o obj/idt.o 
+obj/gdt.o:src/gdt.asm
+	$(ASSEMBLER) $(ASFLAGS) -o obj/gdt.o src/gdt.asm
 
 obj/string.o:src/string.c
 	$(COMPILER) $(CFLAGS) src/string.c -o obj/string.o
@@ -38,6 +36,15 @@ obj/kb.o:src/kb.c
 
 obj/util.o:src/util.c
 	$(COMPILER) $(CFLAGS) src/util.c -o obj/util.o
+	
+obj/interrupt.o:src/interrupt.asm
+	$(ASSEMBLER) $(ASFLAGS) -o obj/interrupt.o src/interrupt.asm	
+	
+obj/isr.o:src/isr.c
+	$(COMPILER) $(CFLAGS2) src/isr.c -o obj/isr.o
+	
+obj/dt.o:src/dt.c
+	$(COMPILER) $(CFLAGS2) src/dt.c -o obj/dt.o 
 
 obj/box.o:src/box.c
 	$(COMPILER) $(CFLAGS) src/box.c -o obj/box.o
@@ -64,7 +71,7 @@ build:all
 	echo         multiboot /boot/kernel.bin >> hotfondue/boot/grub/grub.cfg
 	echo } >> hotfondue/boot/grub/grub.cfg
 
-	grub-mkrescue -o iknow.iso iknow/
+	grub-mkrescue -o os.iso hotfondue/
 	
 clear:
 	rm -f obj/*.o

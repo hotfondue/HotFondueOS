@@ -64,6 +64,18 @@ static void init_idt()
     idt_ptr.base  = (uint32)&idt_entries;
 
     memset(&idt_entries, 0, sizeof(idt_entry_t)*256);
+    
+     /* Remap the irq table. */
+    outportb(PIC_MASTER_CMD, 0x11);
+    outportb(PIC_SLAVE_CMD,  0x11);
+    outportb(PIC_MASTER_DATA, 0x20);
+    outportb(PIC_SLAVE_DATA,  0x28);
+    outportb(PIC_MASTER_DATA, 0x04);
+    outportb(PIC_SLAVE_DATA,  0x02);
+    outportb(PIC_MASTER_DATA, 0x01);
+    outportb(PIC_SLAVE_DATA,  0x01);
+    outportb(PIC_MASTER_DATA, 0x00);
+    outportb(PIC_SLAVE_DATA,  0x00);
 
     idt_set_gate( 0, (uint32)isr0 , 0x08, 0x8E);
     idt_set_gate( 1, (uint32)isr1 , 0x08, 0x8E);
@@ -97,6 +109,23 @@ static void init_idt()
     idt_set_gate(29, (uint32)isr29, 0x08, 0x8E);
     idt_set_gate(30, (uint32)isr30, 0x08, 0x8E);
     idt_set_gate(31, (uint32)isr31, 0x08, 0x8E);
+    idt_set_gate(32, (uint32)isr32, 0x08, 0x8E);
+    idt_set_gate(33, (uint32)isr33, 0x08, 0x8E);
+    idt_set_gate(34, (uint32)isr34, 0x08, 0x8E);
+    idt_set_gate(35, (uint32)isr35, 0x08, 0x8E);
+    idt_set_gate(36, (uint32)isr36, 0x08, 0x8E);
+    idt_set_gate(37, (uint32)isr37, 0x08, 0x8E);
+    idt_set_gate(38, (uint32)isr38, 0x08, 0x8E);
+    idt_set_gate(39, (uint32)isr39, 0x08, 0x8E);
+    idt_set_gate(40, (uint32)isr40, 0x08, 0x8E);
+    idt_set_gate(41, (uint32)isr41, 0x08, 0x8E);
+    idt_set_gate(42, (uint32)isr42, 0x08, 0x8E);
+    idt_set_gate(43, (uint32)isr43, 0x08, 0x8E);
+    idt_set_gate(44, (uint32)isr44, 0x08, 0x8E);
+    idt_set_gate(45, (uint32)isr45, 0x08, 0x8E);
+    idt_set_gate(46, (uint32)isr46, 0x08, 0x8E);
+    idt_set_gate(47, (uint32)isr47, 0x08, 0x8E);
+    idt_set_gate(48, (uint32)isr48, 0x08, 0x8E);
 
     idt_flush((uint32)&idt_ptr);
 }

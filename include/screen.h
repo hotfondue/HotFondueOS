@@ -46,4 +46,6 @@ void set_screen_color(int text_color,int bg_color);
 void set_screen_color_from_color_code(int color_code);
 void print_colored(string ch,int text_color,int bg_color);
 
+void printdec(uint32 n);
+
 #endif

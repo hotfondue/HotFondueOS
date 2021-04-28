@@ -5,6 +5,7 @@
 
 #include "types.h"
 #include "screen.h"
+#include "system.h"
 
 typedef struct registers
 {
@@ -13,5 +14,8 @@ typedef struct registers
     uint32 int_no, err_code;    // Interrupt number and error code (if applicable)
     uint32 eip, cs, eflags, useresp, ss; // Pushed by the processor automatically.
 } registers_t;
+
+typedef void (*isr_t)(registers_t);
+void register_interrupt_handler(uint8 n, isr_t handler);
 
 #endif
