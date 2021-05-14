@@ -57,9 +57,4 @@ int str_to_int(string ch)
 	}
 	return n;
 }
-/*
-void *malloc(int nbytes)
-{
-	char variable[nbytes];
-	return &variable;
-}*/
+

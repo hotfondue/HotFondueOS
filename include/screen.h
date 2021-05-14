@@ -48,4 +48,6 @@ void print_colored(string ch,int text_color,int bg_color);
 
 void printdec(uint32 n);
 
+void printhex(uint32 n);
+
 #endif

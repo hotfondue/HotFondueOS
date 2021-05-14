@@ -166,3 +166,43 @@ void printdec(uint32 n)
 
 }
 
+void printhex(uint32 n)
+{
+    int32 tmp;
+
+    print("0x");
+
+    char noZeroes = 1;
+
+    int i;
+    for (i = 28; i > 0; i -= 4)
+    {
+        tmp = (n >> i) & 0xF;
+        if (tmp == 0 && noZeroes != 0)
+        {
+            continue;
+        }
+    
+        if (tmp >= 0xA)
+        {
+            noZeroes = 0;
+            printch (tmp-0xA+'a' );
+        }
+        else
+        {
+            noZeroes = 0;
+            printch ( tmp+'0' );
+        }
+    }
+  
+    tmp = n & 0xF;
+    if (tmp >= 0xA)
+    {
+        printch (tmp-0xA+'a');
+    }
+    else
+    {
+        printch (tmp+'0');
+    }
+
+}

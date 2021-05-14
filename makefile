@@ -2,13 +2,12 @@ COMPILER = gcc
 LINKER = ld
 ASSEMBLER = nasm
 CFLAGS = -m32 -c -ffreestanding
-CFLAGS2=-nostdlib -fno-builtin -m32 -c
 ASFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T src/link.ld
 EMULATOR = qemu-system-x86_64
 EMULATOR_FLAGS = -kernel
 
-OBJS = obj/kasm.o obj/gdt.o obj/interrupt.o obj/kc.o obj/kb.o obj/dt.o obj/isr.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/box.o obj/shell.o 
+OBJS = obj/kasm.o obj/gdt.o obj/interrupt.o obj/dt.o obj/isr.o obj/timer.o obj/ord_array.o obj/kheap.o obj/paging.o obj/kc.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/box.o obj/shell.o 
 OUTPUT = hotfondue/boot/kernel.bin
 
 run: all
@@ -41,10 +40,22 @@ obj/interrupt.o:src/interrupt.asm
 	$(ASSEMBLER) $(ASFLAGS) -o obj/interrupt.o src/interrupt.asm	
 	
 obj/isr.o:src/isr.c
-	$(COMPILER) $(CFLAGS2) src/isr.c -o obj/isr.o
+	$(COMPILER) $(CFLAGS) src/isr.c -o obj/isr.o
 	
 obj/dt.o:src/dt.c
-	$(COMPILER) $(CFLAGS2) src/dt.c -o obj/dt.o 
+	$(COMPILER) $(CFLAGS) src/dt.c -o obj/dt.o 
+	
+obj/timer.o:src/timer.c
+	$(COMPILER) $(CFLAGS) src/timer.c -o obj/timer.o 
+
+obj/ord_array.o:src/ord_array.c
+	$(COMPILER) $(CFLAGS) src/ord_array.c -o obj/ord_array.o
+
+obj/kheap.o:src/kheap.c
+	$(COMPILER) $(CFLAGS) src/kheap.c -o obj/kheap.o
+	
+obj/paging.o:src/paging.c
+	$(COMPILER) $(CFLAGS) src/paging.c -o obj/paging.o
 
 obj/box.o:src/box.c
 	$(COMPILER) $(CFLAGS) src/box.c -o obj/box.o

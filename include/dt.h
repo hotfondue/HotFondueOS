@@ -2,7 +2,8 @@
 #define DT_H
 
 #include "types.h"
-#include "string.h"
+#include "util.h"
+#include "system.h"
 
 //Defines the interface for initialising the GDT and IDT. Also defines needed structures.
 
@@ -19,7 +20,7 @@ struct gdt_entry_struct
     uint8  base_middle;         // The next 8 bits of the base.
     uint8  access;              // Access flags, determine what ring this segment can be used in.
     uint8  granularity;
-    uint8 base_high;           // The last 8 bits of the base.
+    uint8  base_high;           // The last 8 bits of the base.
 } __attribute__((packed));
 
 typedef struct gdt_entry_struct gdt_entry_t;
@@ -41,7 +42,7 @@ struct idt_entry_struct
     uint16 base_lo;             // The lower 16 bits of the address to jump to when this interrupt fires.
     uint16 sel;                 // Kernel segment selector.
     uint8  always0;             // This must always be zero.
-    uint8 flags;               // More flags. See documentation.
+    uint8  flags;               // More flags. See documentation.
     uint16 base_hi;             // The upper 16 bits of the address to jump to.
 } __attribute__((packed));
 
@@ -90,23 +91,22 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
-extern void isr32();
-extern void isr33();
-extern void isr34();
-extern void isr35();
-extern void isr36();
-extern void isr37();
-extern void isr38();
-extern void isr39();
-extern void isr40();
-extern void isr41();
-extern void isr42();
-extern void isr43();
-extern void isr44();
-extern void isr45();
-extern void isr46();
-extern void isr47();
-extern void isr48();
+extern void irq0 ();
+extern void irq1 ();
+extern void irq2 ();
+extern void irq3 ();
+extern void irq4 ();
+extern void irq5 ();
+extern void irq6 ();
+extern void irq7 ();
+extern void irq8 ();
+extern void irq9 ();
+extern void irq10();
+extern void irq11();
+extern void irq12();
+extern void irq13();
+extern void irq14();
+extern void irq15();
 
 #endif
 
