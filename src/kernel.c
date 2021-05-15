@@ -15,10 +15,10 @@ int kmain()
 	clearScreen();
         //init_timer(50000);
         init_timer(50);
-        initialise_paging();
+        //initialise_paging();
         //uint32 *ptr = (uint32*)0xA0000000;		//-> call page fault
         //uint32 do_page_fault = *ptr;
-        
+        /*
         init_vga(WHITE, BLACK);
         create_dosbox_ui();
         moveCursor(0,15);
@@ -29,6 +29,25 @@ int kmain()
         //asm volatile ("int $0x3");			//-> call normal interrupt
 	//asm volatile("sti");				//-> call timer interrupt
 	
+	*/
+	//testing paging+heap
+	
+	uint32 a = kmalloc(8);
+	initialise_paging();
+	uint32 b = kmalloc(8);
+	uint32 c = kmalloc(8);
+	print("a: ");
+	printhex(a);
+	print(", b: ");
+	printhex(b);
+	print("\nc: ");
+	printhex(c);
+
+	kfree(c);
+	kfree(b);
+	uint32 d = kmalloc(12);
+	print(", d: ");
+	printhex(d); 
 	
 	return 0;
 }

@@ -7,7 +7,6 @@
 
 #include "types.h"
 #include "util.h"
-#include "kheap.h"
 
 /**
    This array is insertion sorted - it always remains in a sorted state (between calls).

@@ -3,5 +3,7 @@
 #ifndef MIX_H
 #define MIX_H
 
+#include "assert.h"
+
 #endif
 
