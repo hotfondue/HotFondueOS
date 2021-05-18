@@ -57,7 +57,7 @@ void isr_handler(registers_t regs)
     }
     else
     {
-    print("unhandled interrupt:\n0x");
+    print(" unhandled interrupt:\n0x");
     printdec(regs.int_no);
     printch(' ');
     print(exception_messages[regs.int_no]);

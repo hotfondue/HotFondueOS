@@ -79,7 +79,7 @@ void alloc_frame(page_t *page, int is_kernel, int is_writeable)
         uint32 idx = first_frame();
         if (idx == (uint32)-1)
         {
-            // PANIC("no free frames!");	//PANIC is a macro that prints a message and then loops infinitely
+            PANIC("no free frames!");	//PANIC is a macro that prints a message and then loops infinitely
         }
         set_frame(idx*0x1000); //this frame is now ours
         page->present = 1;  //mark as present
@@ -163,7 +163,7 @@ void page_fault(registers_t regs)
     print(") at 0x");
     printhex(faulting_address);
     print("\n");
-    //PANIC("Page fault");
+    PANIC("Page fault");
     asm volatile("hlt");
 }
 

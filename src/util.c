@@ -67,8 +67,8 @@ extern void panic(const char *message, const char *file, uint32 line)
     print(message);
     print(") at ");
     print(file);
-    print(":");
-    printch(line);
+    //print(":");
+    //printch(line);
     print("\n");
     // Halt by going into an infinite loop.
     for(;;);

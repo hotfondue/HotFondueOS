@@ -11,9 +11,13 @@ void int_to_ascii(int n, string str);
 int str_to_int(string ch);
 string int_to_string(int n); 
 
+//PANIC is a macro that prints a message and then loops infinitely
 #define PANIC(msg) panic(msg, __FILE__, __LINE__);
+
+//ASSERT macro
 #define ASSERT(b) ((b) ? (void)0 : panic_assert(__FILE__, __LINE__, #b))
 
+//functions for the macros:
 extern void panic(const char *message, const char *file, uint32 line);
 extern void panic_assert(const char *file, uint32 line, const char *desc);    
 
