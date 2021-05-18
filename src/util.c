@@ -28,7 +28,7 @@ void int_to_ascii(int n, string str) {
 }
 string int_to_string(int n)	//itao
 {
-	string ch; //= malloc(50);
+	string ch= kmalloc(50);
 	int_to_ascii(n,ch);
 	int len = strlength(ch);
 	int i = 0;
@@ -67,8 +67,8 @@ extern void panic(const char *message, const char *file, uint32 line)
     print(message);
     print(") at ");
     print(file);
-    print(":");
-    printch(line);
+    //print(":");
+    //printch(line);
     print("\n");
     // Halt by going into an infinite loop.
     for(;;);

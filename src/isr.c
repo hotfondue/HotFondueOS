@@ -57,10 +57,11 @@ void isr_handler(registers_t regs)
     }
     else
     {
-    print("unhandled interrupt:\n0x");
+    print("Unhandled interrupt: 0x");
     printdec(regs.int_no);
-    printch(' ');
+    printch('\n');
     print(exception_messages[regs.int_no]);
+    asm volatile("hlt");
     }
 }
 

@@ -288,7 +288,7 @@ void launch_shell(int n)
 		    
 		    else
 		    {
-		            print("\nCommand not found\n");
+		            print("\nCommand not found\n\n");
 		    } 
 	} while (!strEql(ch,"exit"));
 }

@@ -4,6 +4,7 @@
 #include "types.h"
 #include "string.h"
 #include "screen.h"
+#include "kheap.h"
 
 void memory_copy(char *source, char *dest, int nbytes);
 void memory_set(uint8 *dest, uint8 val, uint32 len);

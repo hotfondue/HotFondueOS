@@ -71,7 +71,6 @@ obj/kc.o:src/kernel.c
 	
 
 build:all
-	#Activate the install xorr if you do not have it already installed
 	#sudo apt-get install xorriso
 	rm hotfondue/boot/grub/ -r -f
 	mkdir hotfondue/boot/grub/
