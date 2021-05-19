@@ -7,6 +7,8 @@
 #include "types.h"
 #include "util.h"
 #include "box.h"
+#include "cpuinfo.h"
+#include "login.h"
 
 void launch_shell(int n);
 

@@ -55,11 +55,17 @@ int kmain()
     
     	//5.Testing shell
     	
-    	init_timer(50);	//initialise timer to 50Hz
-    	init_vga(WHITE, BLACK);
-    	create_dosbox_ui();
-    	moveCursor(0,15);
-    	launch_shell(0);
+    	while(1){
+    		uint32 m=login();
+    		if(m==1){
+    			init_timer(50);	//initialise timer to 50Hz
+    			init_vga(WHITE, BLACK);
+    			create_dosbox_ui();
+    			moveCursor(0,15);
+    			launch_shell(0);
+    		}
+    	}
+    	
         
     return 0;
 }

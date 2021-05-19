@@ -7,7 +7,7 @@ LDFLAGS = -m elf_i386 -T src/link.ld
 EMULATOR = qemu-system-x86_64
 EMULATOR_FLAGS = -kernel
 
-OBJS = obj/kasm.o obj/gdt.o obj/interrupt.o obj/dt.o obj/isr.o obj/timer.o obj/ord_array.o obj/kheap.o obj/paging.o obj/kc.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/box.o obj/shell.o 
+OBJS = obj/kasm.o obj/gdt.o obj/interrupt.o obj/dt.o obj/isr.o obj/timer.o obj/ord_array.o obj/kheap.o obj/paging.o obj/kc.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/cpuinfo.o obj/login.o obj/box.o obj/shell.o 
 OUTPUT = hotfondue/boot/kernel.bin
 
 run: all
@@ -57,8 +57,14 @@ obj/kheap.o:src/kheap.c
 obj/paging.o:src/paging.c
 	$(COMPILER) $(CFLAGS) src/paging.c -o obj/paging.o
 
+obj/login.o:src/login.c
+	$(COMPILER) $(CFLAGS) src/login.c -o obj/login.o
+
 obj/box.o:src/box.c
 	$(COMPILER) $(CFLAGS) src/box.c -o obj/box.o
+	
+obj/cpuinfo.o:src/cpuinfo.c
+	$(COMPILER) $(CFLAGS) src/cpuinfo.c -o obj/cpuinfo.o
 	
 obj/shell.o:src/shell.c
 	$(COMPILER) $(CFLAGS) src/shell.c -o obj/shell.o

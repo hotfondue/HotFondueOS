@@ -3,6 +3,17 @@
 
 int bg_color=0;
 
+void changeinfo(){
+	print("\nNew username: ");
+	string newu=readStr();
+	changeu(newu);
+	print("New password: ");
+	string newp=readStr();
+	changep(newp);
+	
+	print("\n\nLogin information successfully updated!\n\n");
+}
+
 void fill_array(int arr[],int n)
 {
 	int i = 0;
@@ -20,9 +31,6 @@ void print_array(int arr[],int n)
 	int i = 0;
 	for (i = 0;i<n;i++)
 	{
-		/*print("ARR[");
-		print(int_to_string(i));
-		print("]: ");*/
 		print(int_to_string(arr[i]));
 		print("   ");
 	}
@@ -203,11 +211,11 @@ void set_background_color()
 
 void multiply()
 {
-	print("\nNum 1 :");
+	print("\nNum 1: ");
 	int num1 = str_to_int(readStr());
-	print("\nNum 2 :");
+	print("\nNum 2: ");
 	int num2 = str_to_int(readStr());
-	print("\nResult : ");
+	print("\nResult: ");
 	print(int_to_string(num1*num2)); 
 	print("\n\n");
 }
@@ -224,6 +232,8 @@ void help()
 	print("\nmultiply  : Computes the product of two values");
 	print("\nexit      : Quits the current shell");
 	print("\ncolor     : Changes the colors of the terminal");
+	print("\ncpuinfo   : Shows cpuid information");
+	print("\nchangeinfo: Change user login information");
 	
 	print("\n\n");
 }
@@ -242,7 +252,7 @@ void launch_shell(int n)
 		    ch = readStr();
 		    if(strEql(ch,"cmd"))
 		    {
-		            print("\nYou are already in cmd. A new recursive shell is opened\n");
+		            print("\nYou are already in cmd. A new recursive shell is opened\n\n");
 					launch_shell(n+1);
 		    }
 		    else if(strEql(ch,"clear"))
@@ -285,7 +295,14 @@ void launch_shell(int n)
 		    {
 		    	multiply();
 		    }
-		    
+		    else if(strEql(ch,"cpuinfo"))
+		    {
+		    	cpuid_test();
+		    }
+		    else if(strEql(ch,"changeinfo"))
+		    {
+		    	changeinfo();
+		    }
 		    else
 		    {
 		            print("\nCommand not found\n\n");
